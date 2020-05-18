@@ -1,11 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// my imports\\
+import {useParams} from 'react-router-dom'
+//end of my imports\\
+
+
 const Movie = (props) => {
   const [movie, setMovie] = useState();
- 
+  
+  //my additions\\
+
+  const params = useParams();
+
+// end of my additons\\
+
   useEffect(() => {
-    const id = 1;
+    const id = params.id; //added params
     // change ^^^ that line and grab the id from the URL
     // You will NEED to add a dependency array to this effect hook
 
@@ -18,7 +29,7 @@ const Movie = (props) => {
           console.error(error);
         });
 
-  },[]);
+  },[params.id]); // add [id] to make it refetch on each render when the cause of the render was a change of ID 
   
   // Uncomment this only when you have moved on to the stretch goals
   // const saveMovie = () => {
