@@ -3,6 +3,13 @@ import axios from 'axios';
 
 import SavedList from './Movies/SavedList';
 
+//start of my imports\\
+import { Route, Switch, Link } from 'react-router-dom'
+import MovieList from './Movies/MovieList';
+import Movie from './Movies/Movie';
+//end of my imports\\
+
+
 const App = () => {
   const [savedList, setSavedList] = useState([]);
   const [movieList, setMovieList] = useState([]);
@@ -28,7 +35,30 @@ const App = () => {
   return (
     <div>
       <SavedList list={savedList} />
-      <div>Replace this Div with your Routes</div>
+
+
+      {/* adding custom routes */}
+
+<Switch> 
+
+
+{/* 1 */}
+{/* either use exact or rearrange order */}
+      <Route path ='/' exact> 
+          <MovieList movies = {movieList} />
+      </Route>
+
+{/* 2 */}
+       <Route path ='/movies/:id'>
+           <Movie />
+       </Route>
+
+
+</Switch>
+        {/* end of custom routes */}
+
+
+
     </div>
   );
 };
